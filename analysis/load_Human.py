@@ -143,4 +143,4 @@ if __name__ == "__main__":
     
     #THE API IS LIMITED SO ONLY RUN ON A FEW ROWS FOR TESTING
     enriched = enrich_df_with_pr_stats(limited_df, url_column="html_url")
-    print(enriched)
+    enriched.to_csv("human_prs_enriched.csv", index=True)
