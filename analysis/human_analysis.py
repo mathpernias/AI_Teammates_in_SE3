@@ -2,4 +2,5 @@ import pandas as pd
 
 humans = pd.read_csv('human_prs_enriched.csv')
 
-print(humans.head())
+humans_summary = humans.describe()
+print(humans_summary)
