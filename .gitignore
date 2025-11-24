@@ -8,3 +8,5 @@ AIDev.zip
 *.json
 clean_data
 .env
+RQ2_merge_time/outputs/
+
