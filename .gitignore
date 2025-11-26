@@ -8,3 +8,4 @@ AIDev.zip
 *.json
 clean_data
 AIDev-pop
+.env

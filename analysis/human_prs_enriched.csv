@@ -1,0 +1,101 @@
+,id,number,title,user,user_id,state,created_at,closed_at,merged_at,repo_url,html_url,body,agent,additions,deletions,changed_files,commit_count,review_count,comment_count,reviewer_count_ui
+0,2336888723,85268,feat(aci): add automations index page,ameliahsu,55610339,closed,2025-02-14T19:04:59Z,2025-02-18T22:42:20Z,2025-02-18T22:42:19Z,https://api.github.com/repos/getsentry/sentry,https://github.com/getsentry/sentry/pull/85268,"https://sentry-j41gpomr5.sentry.dev/automations
+
+https://github.com/user-attachments/assets/5bb19787-5d94-460f-9fa1-deef76049f74
+
+",Human,329,13,5,2,4,1,2
+1,2447123365,89131,ref(insights): Make use of `<FeatureBadge>` for new Insight page tabs,ryan953,187460,closed,2025-04-08T23:29:50Z,2025-04-09T15:56:55Z,2025-04-09T15:56:54Z,https://api.github.com/repos/getsentry/sentry,https://github.com/getsentry/sentry/pull/89131,"Using the premade component reduces an import here, and gives us a tooltip for free!
+Also we've now got consistent strings to translate, in this case it's lowercase `""new""`.
+
+![SCR-20250408-ombk](https://github.com/user-attachments/assets/10554630-7558-4150-80a0-31b9f2caa010)
+
+---
+
+I realized that the Session Health tab is only out for EA orgs right now, so the ""beta"" label and tooltip is probably more important. But I think ""new"" looks better with the ""Mobile Vitals (new)"" tab in there... and just seems like the better choice.
+
+![SCR-20250408-omxg](https://github.com/user-attachments/assets/762c680d-db03-4479-8178-b2aa40879df3)
+",Human,4,5,2,2,1,3,1
+2,2438086945,88748,:bug: fix: update how we fetch workflow_id and legacy_rule_id from ru…,iamrajjoshi,33237075,closed,2025-04-03T21:36:59Z,2025-04-04T15:10:57Z,2025-04-04T15:10:57Z,https://api.github.com/repos/getsentry/sentry,https://github.com/getsentry/sentry/pull/88748,"i realized i made a mistake for how i fetch the `workflow_id` and `legacy_rule_id`.
+
+the format that the noa passes down is:
+
+https://github.com/getsentry/sentry/blob/fb887ee11cea9e130db2fea435c3f67a21313dab/src/sentry/notifications/notification_action/types.py#L130-L132
+
+essentially
+```
+{
+	""action"" : [
+			{
+				...
+			}
+	]
+}
+```",Human,24,8,4,4,2,0,1
+3,2265431531,83085,fix(org-stats): Require project membership,ArthurKnaus,7033940,closed,2025-01-08T07:47:13Z,2025-01-08T08:49:40Z,2025-01-08T08:49:40Z,https://api.github.com/repos/getsentry/sentry,https://github.com/getsentry/sentry/pull/83085,"### Problem
+
+If the user is not member of any project (closes team membership) the organization stats page can end up in two different states.
+
+1. Default state for new users. none / all projects are selected
+<img width=""1401"" alt=""Screenshot 2025-01-08 at 08 27 42"" src=""https://github.com/user-attachments/assets/cfdc7915-ad3e-4d02-8f3b-0138f94a1656"" />
+
+
+2. User had once access and a project selection is set or they where led there with a link that includes project selection
+<img width=""1401"" alt=""Screenshot 2025-01-08 at 08 23 07"" src=""https://github.com/user-attachments/assets/37158561-1919-4a82-867d-82f68a06377b"" />
+
+Both states are not ideal.
+State 1 suggests on a first glance that there is no traffic in this organization and does not provide any valuable information.
+But state 2 is problematic as requests fail and the page looks broken.
+
+### Solution
+
+Wrap the page in `<NoProjectMessage />` as we do for other pages that rely on project data.
+
+<img width=""1401"" alt=""Screenshot 2025-01-08 at 08 26 43"" src=""https://github.com/user-attachments/assets/335b4c23-08f9-42fb-916f-a212e09c21f2"" />
+
+
+Close https://github.com/getsentry/sentry/issues/82998",Human,77,43,2,1,1,0,1
+4,2332333882,85102,ref(consumers): Rename parallel -> batched-parallel,evanpurkhiser,1421724,closed,2025-02-12T21:24:17Z,2025-02-12T22:20:33Z,2025-02-12T22:20:33Z,https://api.github.com/repos/getsentry/sentry,https://github.com/getsentry/sentry/pull/85102,"Both crons and uptime consumers have a parallel mode where they first
+create batches and in parallel execute groups of those batches.
+
+I'll be introducing a new parallel mode for the uptime consumer that
+does not do any kind of grouping, so I am renaming this to make it more
+clear.
+
+This is aligned with the modes for the occurrence consumer",Human,17,9,5,1,1,1,1
+5,2486573779,90516,ref(perf-issues): Consolidate File IO override option,leeandher,35509934,closed,2025-04-28T18:17:36Z,2025-04-28T19:22:01Z,2025-04-28T19:22:01Z,https://api.github.com/repos/getsentry/sentry,https://github.com/getsentry/sentry/pull/90516,"This PR removes the `performance_issues.file_io_main_thread.disabled` override option for the FileIOMainThread detector. There are already system options that were being checked after detection to stop issue creation, but instead, we will defer to the Issue Platform on whether or not an issue should be created.
+
+I've documented this change on the base class's methods and changed `creation` to `detection` since it establishes the detector will not be run if the option is set to false.",Human,24,15,4,2,2,1,2
+6,2474210990,90082,feat(compare): Add timestamp column to sample mode,shruthilayaj,63818634,closed,2025-04-22T17:55:10Z,2025-04-22T21:40:26Z,2025-04-22T21:40:26Z,https://api.github.com/repos/getsentry/sentry,https://github.com/getsentry/sentry/pull/90082,Include timestamp column in sample mode and make it the default sort,Human,61,53,3,3,1,2,1
+7,2404610772,87421,feat(tsc): Replace SessionsRequest w/ useSessionsRequest hook in `<ReleaseOverview>`,billyvg,79684,closed,2025-03-19T18:07:08Z,2025-03-20T14:17:00Z,2025-03-20T14:17:00Z,https://api.github.com/repos/getsentry/sentry,https://github.com/getsentry/sentry/pull/87421,"Depends on https://github.com/getsentry/sentry/pull/87419 and https://github.com/getsentry/sentry/pull/87413
+
+This unblocks https://github.com/getsentry/sentry/pull/86736",Human,176,196,1,1,2,0,2
+8,2354374131,85761,ref(crons): Remove time restriction on uptime issues,evanpurkhiser,1421724,closed,2025-02-24T17:58:51Z,2025-02-25T20:18:32Z,2025-02-25T20:18:32Z,https://api.github.com/repos/getsentry/sentry,https://github.com/getsentry/sentry/pull/85761,"There will only ever be one issue, so until we have a better component
+to use here let's just remove the time-range filter so we always show
+that one issue in the table",Human,1,15,2,1,1,1,1
+9,2564963212,92762,feat(insights): update ux for open in explore and create alert,DominikB2014,44422760,closed,2025-06-03T18:57:57Z,2025-06-03T20:34:14Z,2025-06-03T20:34:14Z,https://api.github.com/repos/getsentry/sentry,https://github.com/getsentry/sentry/pull/92762,"Updates the open in explore feature and create alert feature to the latest ux
+Before
+<img width=""480"" alt=""image"" src=""https://github.com/user-attachments/assets/f8cd75af-2169-4fe8-a283-f4fdf5f7bedc"" />
+
+After
+<img width=""441"" alt=""image"" src=""https://github.com/user-attachments/assets/cfadb9c8-ad62-45b4-8836-e816145753bb"" />
+",Human,102,92,4,2,1,0,1
+10,2622011651,94465,fix(dev): mktemp: too few X's in template,bukzor,640328,closed,2025-06-26T18:54:10Z,2025-06-26T19:57:23Z,2025-06-26T19:57:23Z,https://api.github.com/repos/getsentry/sentry,https://github.com/getsentry/sentry/pull/94465,"For maximum compatibility, busybox mktemp requires at least six X's and that they appear at the end.
+Then there's no more need to try twice.
+",Human,1,1,1,1,1,0,1
+11,2342137052,85352,feat(laravel-insights): Placeholder page,ArthurKnaus,7033940,closed,2025-02-18T13:54:45Z,2025-02-18T14:24:52Z,2025-02-18T14:24:52Z,https://api.github.com/repos/getsentry/sentry,https://github.com/getsentry/sentry/pull/85352,"Add placeholder page with rough responsive layout for Laravel specific insights.
+
+<img width=""1452"" alt=""Screenshot 2025-02-18 at 14 48 52"" src=""https://github.com/user-attachments/assets/805a82dd-0440-4b16-beec-1387dadc5083"" />
+
+
+**Note:** This is WIP. All changes are behind the feature flag `organizations:laravel-insights`.
+
+- part of https://github.com/getsentry/projects/issues/679",Human,242,1,3,1,3,0,2
+12,2419106029,87963,ref(span-buffer): Move from sets to arrays,untitaker,837573,closed,2025-03-26T11:30:27Z,2025-04-04T10:20:54Z,,https://api.github.com/repos/getsentry/sentry,https://github.com/getsentry/sentry/pull/87963,"Arrays might be faster as they might not run comparisons on payloads to
+determine whether they are unique. However, they might not be as each
+item has to be copied individually in Lua.
+",Human,22,6,2,1,0,2,0
+13,2310085567,84390,chore(issues): Update stronger typing list with more issues modules,mrduncan,14761,closed,2025-01-31T21:53:09Z,2025-02-03T17:25:39Z,2025-02-03T17:25:39Z,https://api.github.com/repos/getsentry/sentry,https://github.com/getsentry/sentry/pull/84390,,Human,4,1,2,2,3,1,3
+14,2291035708,83789,deps(ui): Upgrade webpack-dev-server to v5.2.0,scttcper,1400464,closed,2025-01-21T23:27:18Z,2025-01-21T23:40:33Z,2025-01-21T23:40:33Z,https://api.github.com/repos/getsentry/sentry,https://github.com/getsentry/sentry/pull/83789,"Silences a security warning via webpack-dev-server -> express -> path-to-regexp
+
+https://github.com/getsentry/sentry/security/dependabot/308
+",Human,97,222,2,1,1,1,1
