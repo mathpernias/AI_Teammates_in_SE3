@@ -3,7 +3,7 @@
 from data_loader import load_all_pull_requests
 import preprocessing
 from analysis_rq2 import split_ai_human, compute_stats, save_stats_report
-from plots_rq2 import plot_boxplot_merge_time, plot_hist_merge_time
+from plots_rq2 import plot_boxplot_merge_time, plot_hist_merge_time, plot_cumulative_approvals
 
 def main():
     # 1) Charger AI + Human
@@ -29,7 +29,7 @@ def main():
     # 6) Graphiques
     plot_boxplot_merge_time(merged_ai, merged_human)
     plot_hist_merge_time(merged_ai, merged_human)
-
+    plot_cumulative_approvals(merged_ai, merged_human)
     print("\n[OK] Analyse RQ2 (AI vs Human) terminée.")
 
 if __name__ == "__main__":
